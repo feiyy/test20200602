@@ -14,8 +14,11 @@
 			<div>
 				{{movie.pubDesc}}
 			</div>
-			<div>
+			<div :class="{limitedheight:flag}" style="text-align: left;overflow: hidden;">
 				{{movie.dra}}
+			</div>
+			<div>
+				<img :src="flag?downIcon:upIcon" @click="flag=!flag"/>
 			</div>
 		</div>	
 	</div>
@@ -23,10 +26,15 @@
 
 <script>
 	import axios from 'axios'
+	import downIcon from '../assets/down.png'
+	import upIcon from '../assets/up.png'
 	export default{
 		data(){
 			return {
-				movie:{}
+				flag:true,/**height: 50px**/
+				movie:{},
+				downIcon,
+				upIcon
 			}
 		
 		},
@@ -60,10 +68,26 @@
 					
 					this.movie = res.data.detailMovie;
 				})
-			}
+			},
+			/* toggle()
+			{
+				if(this.flag)
+				{
+					this.iconpath = upIcon;
+				}
+				else
+				{
+					this.iconpath = downIcon;
+				}
+				
+				this.flag = !this.flag;
+			} */
 		}
 	}
 </script>
 
 <style>
+	.limitedheight{
+		height: 50px;
+	}
 </style>
