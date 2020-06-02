@@ -3,7 +3,7 @@
 		<div>
 			近期最受期待
 			<div class="flexbox">
-				<div class="flexitem" v-for="item in expectedList">
+				<div class="flexitem" v-for="item in expectedList" @click="$router.push('/detail/'+item.id)">
 					<img :src="item.img.replace('/w.h/','/100.100/')" />
 					<div style="font-size: 14px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{item.nm}}</div>
 					<div>{{item.comingTitle}}</div>
